@@ -20,7 +20,9 @@ module Slack
 
       people.map do |person|
         profile = client.users_info(user: person).user.profile
-        { name: profile.real_name_normalized, image: profile.image_original, title: profile.title }
+        { name: profile.real_name_normalized,
+          image: profile.image_original || profile.image_512 || profile.image_192,
+          title: profile.title }
       end.find_all { |person| person.values.all? { |val| val != '' && val != nil } }
     end
   end
