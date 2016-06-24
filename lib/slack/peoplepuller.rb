@@ -4,11 +4,11 @@ require 'slack-ruby-client'
 
 module Slack
   module Peoplepuller
-    Slack.configure do |config|
-      config.token = ENV['SLACK_API_TOKEN']
-    end
-
     def self.pull(groups_to_load)
+      Slack.configure do |config|
+        config.token = configuration.slack_api_token
+      end
+
       client = Slack::Web::Client.new
       slack_groups = client.usergroups_list(include_users: true)
       people = []
