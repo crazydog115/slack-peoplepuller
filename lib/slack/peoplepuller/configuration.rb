@@ -11,11 +11,10 @@ module Slack
     end
 
     class Configuration
-      attr_accessor :slack_api_token, :groups
+      attr_accessor :slack_api_token
 
       def initialize
         @slack_api_token = ''
-        @groups = []
       end
     end
   end

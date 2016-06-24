@@ -8,12 +8,12 @@ module Slack
       config.token = ENV['SLACK_API_TOKEN']
     end
 
-    def self.pull
+    def self.pull(groups_to_load)
       client = Slack::Web::Client.new
-      groups = client.usergroups_list(include_users: true)
+      slack_groups = client.usergroups_list(include_users: true)
       people = []
-      configuration.groups.each do |search_group|
-        group = groups.usergroups.find { |group| group.name == search_group }
+      groups_to_load.each do |group|
+        group = slack_groups.usergroups.find { |slack_group| slack_group.name == group }
         raise "Group #{search_group} not found" if group.nil?
         people += group.users
       end

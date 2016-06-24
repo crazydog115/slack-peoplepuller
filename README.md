@@ -1,9 +1,7 @@
 
 # Slack::Peoplepuller
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/slack/peoplepuller`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Pulls User's Slack Profile information into a Hash
 
 ## Installation
 
@@ -26,9 +24,8 @@ Or install it yourself as:
 ```ruby
 Slack::Peoplepuller.configure do |config|
   config.slack_api_token = ENV['SLACK_API_TOKEN']
-  config.groups = ['Group Name', 'Other Group Name']
 end
-people = Slack::Peoplepuller.pull
+people = Slack::Peoplepuller.pull(['Group Name', 'Other Group Name'])
 # [{:name=>"John Smith", :image=>"http://foo.com/image.jpg", :title=>"Manager"}, {:name=>"Jane Doe", :image=>"http://bar.com/image.png", :title=>"Developer"}]
 
 ```
